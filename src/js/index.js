@@ -28,9 +28,8 @@ refs.searchField.addEventListener(
   debounce(e => {
     pictureFind(e.target.value)
       .then(response => {
-        console.log(response);
         refs.galleryContainer.innerHTML = '';
-        const markupPictures = pictureTemplate(response.hits);
+        const markupPictures = pictureTemplate(response.data.hits);
         // console.log(markupPictures);
         refs.galleryContainer.insertAdjacentHTML('beforeend', markupPictures);
       })

@@ -1,13 +1,46 @@
 import axios from 'axios';
 
-const pictureFind = async pictureName => {
-  axios.defaults.baseURL = 'https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=';
-  const myKey = '21807321-d1b9b9077da7f78b4c19cddb8';
+// const pictureFind = async pictureName => {
+//   axios.defaults.baseURL = 'https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=';
+//   const myKey = '21807321-d1b9b9077da7f78b4c19cddb8';
 
+//   try {
+//     let pageNumber = 1;
+//     const request = await axios.get(`${pictureName}&page=${pageNumber}&per_page=12&key=${myKey}`);
+//       return request.json().then(data => console.log(data));
+
+//   } catch (error) {
+//     return error;
+//   }
+// };
+
+// const pictureFind = async pictureName => {
+//   axios.defaults.baseURL = 'https://pixabay.com/api/?image_type=photo&orientation=horizontal';
+//   const myKey = '21807321-d1b9b9077da7f78b4c19cddb8';
+//   try {
+//     let pageNumber = 1;
+//     const request = await axios.get(
+//       `&q=${pictureName}&page=${pageNumber}&per_page=12&key=${myKey}`,
+//     );
+//     console.log(request);
+//     return request;
+//   } catch (error) {
+//     return error;
+//   }
+// };
+
+// export default pictureFind;
+
+const pictureFind = async pictureName => {
+  axios.defaults.baseURL = 'https://pixabay.com/api/';
+  const myKey = '21807321-d1b9b9077da7f78b4c19cddb8';
   try {
     let pageNumber = 1;
-    const request = await axios.get(`${pictureName}&page=${pageNumber}&per_page=12&key=${myKey}`);
-    return request.json().then(data => console.log(data));
+    const request = await axios.get(
+      `?key=${myKey}&q=${pictureName}&page=${pageNumber}&per_page=12&image_type=photo`,
+    );
+    console.log(request);
+    return request;
   } catch (error) {
     return error;
   }
