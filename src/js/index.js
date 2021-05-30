@@ -23,34 +23,17 @@ const refs = {
 //   block: 'end',
 // });
 
-pictureFind('sun');
-
-// refs.loadMoreBtn.addEventListener(
-//   'input',
-//   debounce(e => {}, 500),
-// );
-
-// refs.countryInputField.addEventListener(
-//   'input',
-//   debounce(e => {
-//     country(e.target.value)
-//       .then(response => {
-//         refs.countryListRoot.innerHTML = '';
-//         if (response.length > 10) {
-//           console.log(response.length);
-//           return error({
-//             text: 'Too many matches found. Please enter a more specific query!',
-//           });
-//         } else if (response.length > 1) {
-//           const murkupCountries = countryListTpl(response);
-
-//           refs.countryListRoot.insertAdjacentHTML('beforeend', murkupCountries);
-//         } else {
-//           const murkupCountry = countryIndicatedTpl(response);
-//           //   refs.countryListRoot.innerHTML = '';
-//           refs.countryListRoot.insertAdjacentHTML('beforeend', murkupCountry);
-//         }
-//       })
-//       .catch(error => console.log(error));
-//   }, 500),
-// );
+refs.searchField.addEventListener(
+  'input',
+  debounce(e => {
+    pictureFind(e.target.value)
+      .then(response => {
+        console.log(response);
+        refs.galleryContainer.innerHTML = '';
+        const markupPictures = pictureTemplate(response.hits);
+        // console.log(markupPictures);
+        refs.galleryContainer.insertAdjacentHTML('beforeend', markupPictures);
+      })
+      .catch(error => console.log(error));
+  }, 500),
+);

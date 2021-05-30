@@ -1,18 +1,19 @@
 import axios from 'axios';
 
-export default async pictureName => {
-  const pageNumber = 1;
+const pictureFind = async pictureName => {
   axios.defaults.baseURL = 'https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=';
   const myKey = '21807321-d1b9b9077da7f78b4c19cddb8';
 
   try {
+    let pageNumber = 1;
     const request = await axios.get(`${pictureName}&page=${pageNumber}&per_page=12&key=${myKey}`);
-    console.log(request.json());
-    return request.json();
+    return request.json().then(data => console.log(data));
   } catch (error) {
     return error;
   }
 };
+
+export default pictureFind;
 
 // export default function getData(searchValue, pageNumber) {
 //   return axios(
