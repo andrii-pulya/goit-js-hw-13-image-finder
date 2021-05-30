@@ -40,6 +40,7 @@ window.onload = () => {
           behavior: 'smooth',
           block: 'end',
         });
+        refs.searchField.value = '';
       })
       .catch(error => console.log(error));
   }
