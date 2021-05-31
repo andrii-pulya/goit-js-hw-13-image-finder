@@ -1,20 +1,50 @@
 .search-form {
   display: block;
-  padding: 10px;
 }
 
 input {
   display: block;
   padding: 10px;
-  margin: 50px auto;
+  margin: 10px auto;
 }
 
 .load-more-btn {
-  display: block;
+  display: none;
   margin: 30px auto;
   padding: 10px;
 
   background-color: rgb(236, 10, 180);
   color: #ffffff;
   font-weight: 700;
+}
+
+.load-more-btn.visible {
+  display: block;
+}
+
+.picture-item {
+  display: flex;
+  justify-content: center;
+
+  padding: 15px;
+  margin: 10px;
+}
+
+.gallery {
+  display: block;
+  max-width: 100%;
+  margin: 15px;
+  justify-content: center;
+  list-style: none;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.stats-item {
+  display: block;
+
+  text-align: center;
 }

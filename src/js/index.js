@@ -7,6 +7,7 @@ const refs = {
   searchField: document.querySelector('.search-form'),
   galleryContainer: document.querySelector('.gallery'),
   loadMoreBtn: document.querySelector('.load-more-btn'),
+  body: document.querySelector('.start-body'),
 };
 
 window.onload = () => {
@@ -15,6 +16,8 @@ window.onload = () => {
     debounce(e => {
       if (e.target.value === '') {
         refs.galleryContainer.innerHTML = '';
+        refs.body.style.height = '100vh';
+        refs.loadMoreBtn.classList.remove('visible');
       } else {
         pictureFind(e.target.value)
           .then(response => {
@@ -22,6 +25,8 @@ window.onload = () => {
             refs.galleryContainer.innerHTML = '';
             const markupPictures = pictureTemplate(response.data.hits);
             refs.galleryContainer.insertAdjacentHTML('beforeend', markupPictures);
+            refs.body.style.height = '100%';
+            refs.loadMoreBtn.classList.add('visible');
           })
           .catch(error => console.log(error));
       }
