@@ -21,12 +21,17 @@ window.onload = () => {
       } else {
         pictureFind(e.target.value)
           .then(response => {
-            refs.searchField.value = e.target.value;
-            refs.galleryContainer.innerHTML = '';
-            const markupPictures = pictureTemplate(response.data.hits);
-            refs.galleryContainer.insertAdjacentHTML('beforeend', markupPictures);
-            refs.body.style.height = '100%';
-            refs.loadMoreBtn.classList.add('visible');
+            if (response.data.total === 0) {
+              refs.body.style.height = '100vh';
+              alert('Упс... Ничего не найдено! Введите более точный запрос =)');
+            } else {
+              refs.searchField.value = e.target.value;
+              refs.galleryContainer.innerHTML = '';
+              const markupPictures = pictureTemplate(response.data.hits);
+              refs.galleryContainer.insertAdjacentHTML('beforeend', markupPictures);
+              refs.body.style.height = '100%';
+              refs.loadMoreBtn.classList.add('visible');
+            }
           })
           .catch(error => console.log(error));
       }
